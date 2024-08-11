@@ -11,5 +11,11 @@ class AccountPaymentReceiptbook(models.Model):
 
     _inherit = 'account.payment.receiptbook'
 
+    document_type_id = fields.Many2one(
+        'l10n_latam.document.type',
+        'Document Type',
+        required=True,
+    )
+
     def dummy_method(self):
         return True

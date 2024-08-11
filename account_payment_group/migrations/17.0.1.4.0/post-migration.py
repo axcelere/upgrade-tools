@@ -41,6 +41,7 @@ def migrate(env, version):
             'account_payment_group.view_account_payment_group_form',
             'account_payment_group.view_account_payment_group_graph',
             'account_payment_group.action_account_payments_group',
+            'l10n_ar_account_withholding.report_withholding_certificate_document',
         ],
         delete_childs=True
     )

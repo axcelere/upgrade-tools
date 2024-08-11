@@ -17,4 +17,5 @@ def migrate(env, version):
         delete_childs=True
     )
     env['ir.ui.view'].search([('arch_db', 'like', 'withholding_sequence_id')]).unlink()
+    env['ir.ui.view'].search([('arch_db', 'like', 'l10n_latam_use_checkbooks')]).unlink()
     return

@@ -30,5 +30,5 @@
     'installable': True,
     'name': 'Withholdings on Payments',
     'test': [],
-    'version': "17.0.1.2.0",
+    'version': "17.0.1.3.0",
 }

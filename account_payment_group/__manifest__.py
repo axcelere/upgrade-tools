@@ -20,4 +20,5 @@
     ],
     "demo": [
     ],
+    'pre_init_hook': '_pre_init_method',
 }

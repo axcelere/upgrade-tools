@@ -68,4 +68,5 @@ def migrate(env, version):
         )
 
     env['mail.tracking.value'].search([('mail_message_id.model','=','account.payment.group')]).unlink()
-    env['ir.ui.view'].search([('arch_db', 'like', 'payment_group_id')]).unlink()
+    env['ir.ui.view'].search([('arch_db', 'like', 'action_open_related_document')]).unlink()
+    env['ir.ui.view'].search([('arch_db', 'like', 'action_open_reconcile')]).unlink()

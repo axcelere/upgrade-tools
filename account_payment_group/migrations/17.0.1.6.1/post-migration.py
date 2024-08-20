@@ -41,6 +41,8 @@ def migrate(env, version):
             'account_payment_group.view_account_payment_group_form',
             'account_payment_group.view_account_payment_group_graph',
             'account_payment_group.action_account_payments_group',
+            'account_payment_group.view_move_line_with_matched_tree',
+            'account_payment_group.view_move_line_tree',
             'l10n_ar_account_withholding.report_withholding_certificate_document',
         ],
         delete_childs=True
@@ -68,5 +70,4 @@ def migrate(env, version):
         )
 
     env['mail.tracking.value'].search([('mail_message_id.model','=','account.payment.group')]).unlink()
-    env['ir.ui.view'].search([('arch_db', 'like', 'action_open_related_document')]).unlink()
     env['ir.ui.view'].search([('arch_db', 'like', 'action_open_reconcile')]).unlink()

@@ -5,7 +5,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def l10n_ar_withholding_post_init(self):
+def _l10n_ar_withholding_post_init(self):
     """ Existing companies that have the Argentinean Chart of Accounts set """
     env = self.env
     template_codes = ['ar_ri', 'ar_ex', 'ar_base']

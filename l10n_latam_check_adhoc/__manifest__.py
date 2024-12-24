@@ -27,10 +27,11 @@
     'demo': [
     ],
     'depends': [
-        'account_check_printing'
+        'account_check_printing',
+        'l10n_latam_check'
     ],
     'installable': True,
     'name': 'Account Check Management',
     'test': [],
-    'version': "17.0.1.0.0",
+    'version': "17.0.1.0.1",
 }

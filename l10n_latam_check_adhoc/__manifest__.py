@@ -33,5 +33,5 @@
     'installable': True,
     'name': 'Account Check Management',
     'test': [],
-    'version': "17.0.1.0.2",
+    'version': "17.0.1.0.3",
 }

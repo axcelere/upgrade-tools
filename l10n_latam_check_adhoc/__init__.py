@@ -3,3 +3,7 @@
 # directory
 ##############################################################################
 from . import models
+
+def _pre_init_method(env):
+    for rec in env['account.payment.method'].search([]):
+        rec.write({'code': '%s-%s' % (rec.code, 'old')})

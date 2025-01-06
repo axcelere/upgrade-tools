@@ -33,6 +33,6 @@
     'installable': True,
     'name': 'Account Check Management',
     'test': [],
-    'version': "17.0.1.0.5",
+    'version': "17.0.1.0.6",
     'pre_init_hook': '_pre_init_method',
 }

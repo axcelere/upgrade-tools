@@ -28,11 +28,11 @@
     ],
     'depends': [
         'account_check_printing',
-        'l10n_latam_check'
+        # 'l10n_latam_check'
     ],
     'installable': True,
     'name': 'Account Check Management',
     'test': [],
-    'version': "17.0.1.0.6",
+    'version': "17.0.1.1.7",
     'pre_init_hook': '_pre_init_method',
 }

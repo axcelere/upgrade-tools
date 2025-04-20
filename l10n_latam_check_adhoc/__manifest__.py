@@ -31,8 +31,9 @@
         'l10n_latam_check'
     ],
     'installable': True,
+    'auto_install': True,
     'name': 'Account Check Management',
     'test': [],
-    'version': "18.0.1.0.0",
+    'version': "18.0.1.1.0",
     'pre_init_hook': '_pre_init_method',
 }

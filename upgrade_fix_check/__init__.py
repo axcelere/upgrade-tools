@@ -56,10 +56,12 @@ WHERE
         ids = self.env.cr.fetchall()
         old_checks = AccountPayment.browse([x[0] for x in ids])
         for old_check in old_checks:
+            liquidity_line = old_check._seek_for_lines()[0]
             Check.create({
                 'name': old_check.check_number,
                 'amount': old_check.amount,
                 'payment_id': old_check.id,
                 'payment_date': old_check.date,
+                'outstanding_line_id': liquidity_line.id,
             })
         return True

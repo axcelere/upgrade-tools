@@ -9,6 +9,57 @@ class FixCheck(models.Model):
     _inherit = "l10n_latam.check"
 
     @api.model
+    def fix_third_checks_ofupgrade_15_from_ids(self, ids_dict={}):
+        if not ids_dict:
+            return False
+        Check = self.env['l10n_latam.check'].sudo()
+        Payment = self.env['account.payment'].sudo()
+        ids = ids_dict.keys()
+        for old_check in Payment.browse(ids):
+            try:
+                dict_key = ids_dict.get(old_check.id, [False, "", False])
+                new_check = Check.create({
+                    'name': dict_key[1],
+                    'bank_id': dict_key[0],
+                    'amount': old_check.amount,
+                    'payment_id': old_check.id,
+                    'payment_date': old_check.date,
+                    'current_journal_id': dict_key[2],
+                    'company_id': old_check.company_id.id,
+                })
+                new_check.write({'current_journal_id': dict_key[2]})
+            except Exception as e:
+                _logger.error("Error creating check for payment %s: %s", old_check, e)
+        return True
+
+    @api.model
+    def fix_cheques_propios_ofupgrade_15_from_ids(self, ids_dict={}):
+        if not ids_dict:
+            return False
+        Check = self.env['l10n_latam.check'].sudo()
+        Payment = self.env['account.payment'].sudo()
+        ids = ids_dict.keys()
+        for old_check in Payment.browse(ids):
+            try:
+                dict_key = ids_dict.get(old_check.id, [False, "", False])
+                liquidity_line = old_check._seek_for_lines()[0]
+                with self.env.cr.savepoint():
+                    new_check = Check.create({
+                        'name': dict_key[1],
+                        'bank_id': dict_key[0],
+                        'amount': old_check.amount,
+                        'payment_id': old_check.id,
+                        'payment_date': old_check.date,
+                        'current_journal_id': dict_key[2],
+                        'company_id': old_check.company_id.id,
+                        'outstanding_line_id': liquidity_line.id,
+                    })
+                    new_check.write({'current_journal_id': dict_key[2]})
+            except Exception as e:
+                _logger.error("Error creating check for payment %s: %s", old_check, e)
+        return True
+
+    @api.model
     def fix_checks_ofupgrade_15(self):
         AccountPayment = self.env['account.payment'].sudo()
         Check = self.env['l10n_latam.check'].sudo()

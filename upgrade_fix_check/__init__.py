@@ -42,9 +42,12 @@ class FixCheck(models.Model):
         for id in ids:
             try:
                 with self.env.cr.savepoint():
-                    
                     check = Check.search([('payment_id', '=', id)], limit=1)
                     payment_date = ids_dict.get(id, check.payment_date)
+                    if isinstance(payment_date, str):
+                        # Convierte solo si es string en formato 'dd/mm/yyyy'
+                        payment_date = datetime.strptime(payment_date, '%d/%m/%Y').strftime('%Y-%m-%d')
+                    date_obj = datetime.strptime(date_str, '%d/%m/%Y')
                     check.write({'payment_date': payment_date})
             except Exception as e:
                 _logger.error("Error updating date of check %s: %s", check, e)

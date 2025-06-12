@@ -33,6 +33,24 @@ class FixCheck(models.Model):
         return True
 
     @api.model
+    def update_payment_date_third_checks_ofupgrade_15_from_ids(self, ids_dict={}):
+        if not ids_dict:
+            return False
+        Check = self.env['l10n_latam.check'].sudo()
+        Payment = self.env['account.payment'].sudo()
+        ids = ids_dict.keys()
+        for id in ids:
+            try:
+                with self.env.cr.savepoint():
+                    
+                    check = Check.search([('payment_id', '=', id)], limit=1)
+                    payment_date = ids_dict.get(id, check.payment_date)
+                    check.write({'payment_date': payment_date})
+            except Exception as e:
+                _logger.error("Error updating date of check %s: %s", check, e)
+        return True
+
+    @api.model
     def fix_cheques_propios_ofupgrade_15_from_ids(self, ids_dict={}):
         if not ids_dict:
             return False

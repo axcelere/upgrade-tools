@@ -3,6 +3,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 from odoo import models, api
+from datetime import datetime
 
 
 class FixCheck(models.Model):

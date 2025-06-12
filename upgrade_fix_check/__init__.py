@@ -48,7 +48,6 @@ class FixCheck(models.Model):
                     if isinstance(payment_date, str):
                         # Convierte solo si es string en formato 'dd/mm/yyyy'
                         payment_date = datetime.strptime(payment_date, '%d/%m/%Y').strftime('%Y-%m-%d')
-                    date_obj = datetime.strptime(date_str, '%d/%m/%Y')
                     check.write({'payment_date': payment_date})
             except Exception as e:
                 _logger.error("Error updating date of check %s: %s", check, e)

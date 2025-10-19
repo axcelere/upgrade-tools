@@ -8,11 +8,11 @@ def migrate(cr, version):
     if view:
         view.unlink()
     # Elimina todas las vistas (ir.ui.view) cuyo campo 'module' corresponde a este addon
-    addon_name = 'l10n_ar_withholding_ux'
-    views = env['ir.ui.view'].search([('module', '=', addon_name)])
-    if views:
-        _logger.info(f"Eliminando {len(views)} vistas del módulo '{addon_name}'.")
-        views.unlink()
-    else:
-        _logger.info(f"No se encontraron vistas para el módulo '{addon_name}'.")
+    # addon_name = 'l10n_ar_withholding_ux'
+    # views = env['ir.ui.view'].search([('module', '=', addon_name)])
+    # if views:
+    #     _logger.info(f"Eliminando {len(views)} vistas del módulo '{addon_name}'.")
+    #     views.unlink()
+    # else:
+    #     _logger.info(f"No se encontraron vistas para el módulo '{addon_name}'.")
     cr.commit()
